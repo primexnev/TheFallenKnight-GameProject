@@ -2,8 +2,9 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!78 &1
 TagManager:
-  serializedVersion: 2
-  tags: []
+  serializedVersion: 3
+  tags:
+  - Stairs
   layers:
   - Default
   - TransparentFX
@@ -41,12 +42,44 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Layer 1
+  - name: Layer 3 - Stairs
+    uniqueID: 4160106261
+    locked: 0
+  - name: Layer 3 - Props
     uniqueID: 2425651459
     locked: 0
-  - name: Layer 2
+  - name: Layer 3 - Tilemap
     uniqueID: 4250941897
     locked: 0
-  - name: Layer 3
+  - name: Layer 3 - Grass
     uniqueID: 4189426099
     locked: 0
+  - name: Layer 2 - Stairs
+    uniqueID: 1707964203
+    locked: 0
+  - name: Layer 2 - Props
+    uniqueID: 3331483921
+    locked: 0
+  - name: Layer 2 - Tilemap
+    uniqueID: 3175598477
+    locked: 0
+  - name: Layer 2 - Grass
+    uniqueID: 267613211
+    locked: 0
+  - name: Layer 1 - Stairs
+    uniqueID: 3295240493
+    locked: 0
+  - name: Layer 1 - Wall Shadow
+    uniqueID: 1690762133
+    locked: 0
+  - name: Layer 1 - Wall
+    uniqueID: 991452077
+    locked: 0
+  - name: Layer 1 - Stone Ground
+    uniqueID: 3656473857
+    locked: 0
+  - name: Layer 1 - Grass
+    uniqueID: 2689109039
+    locked: 0
+  m_RenderingLayers:
+  - Default
