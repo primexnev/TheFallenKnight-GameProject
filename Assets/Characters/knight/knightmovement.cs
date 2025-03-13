@@ -5,34 +5,37 @@ public class KnightMovement : MonoBehaviour
     public float speed = 3f; // Movement speed
     private Rigidbody2D rb;
     private Animator animator;
-    private float moveInputX;
-    private float moveInputY;
+    private SpriteRenderer spriteRenderer;
+    private Vector2 moveInput; // Stores movement input as a vector
 
-    void Start()
+    private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>(); // Get SpriteRenderer for flipping
     }
 
-    void FixedUpdate()
+    private void Update()
     {
-        // Get player input for both X and Y axes
-        moveInputX = Input.GetAxisRaw("Horizontal"); // A-D
-        moveInputY = Input.GetAxisRaw("Vertical");   // W-S
+        // Handle movement input (Legacy Input System)
+        moveInput = new Vector2(
+            Input.GetAxisRaw("Horizontal"),
+            Input.GetAxisRaw("Vertical")
+        ).normalized; // Normalize input to prevent faster diagonal movement
 
-        // Debug log to check if input is detected
-        Debug.Log("Move Input X: " + moveInputX + " | Move Input Y: " + moveInputY);
+        // Flip character without scaling
+        if (moveInput.x > 0)
+            spriteRenderer.flipX = false;
+        else if (moveInput.x < 0)
+            spriteRenderer.flipX = true;
 
-        // Apply movement directly to Rigidbody2D
-        rb.linearVelocity = new Vector2(moveInputX * speed, moveInputY * speed);
+        // Set animation speed
+        animator.SetFloat("speed", moveInput.sqrMagnitude);
+    }
 
-        // Send movement data to Animator
-        animator.SetFloat("speed", Mathf.Abs(moveInputX) + Mathf.Abs(moveInputY));
-
-        // Flip character's direction without shrinking
-        if (moveInputX > 0)
-            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
-        else if (moveInputX < 0)
-            transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+    private void FixedUpdate()
+    {
+        // Rigidbody2D for smooth physics-based movement
+        rb.linearVelocity = new Vector2(moveInput.x * speed, moveInput.y * speed);
     }
 }
